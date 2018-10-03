@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace LibClases
@@ -23,7 +24,18 @@ namespace LibClases
         public Usuario(string cuenta)
         {
             this.cuenta = cuenta;
-            this.contraseña = "";
+            ///Carga
+        }
+
+        /// <summary>
+        /// Crea un usuario nuevo
+        /// </summary>
+        /// <param name="cuenta">Cuenta del usuario</param>
+        /// <param name="contraseña">Nueva contraseña</param>
+        public Usuario(string cuenta, string contraseña)
+        {
+            this.cuenta = cuenta;
+            this.contraseña = Encriptar(contraseña);
         }
 
         /// <summary>
@@ -42,6 +54,14 @@ namespace LibClases
         public bool comprobar(string contraseña)
         {
             return contraseña == this.contraseña;
+        }
+
+        private string Encriptar(string password)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(password);
+            SHA256 mySHA256 = SHA256.Create();
+            bytes = mySHA256.ComputeHash(bytes);
+            return Encoding.ASCII.GetString(bytes);
         }
     }
 }
