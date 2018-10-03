@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LibClases
 {
-    class Encuesta
+    public class Encuesta
     {
         /// <summary>
         /// Título de la encuesta y clave de la misma
@@ -37,22 +37,6 @@ namespace LibClases
             this.descripcion = descripcion;
             this.rutaFoto = rutaFoto;
             this.visible = visible;
-        }
-
-        /// <summary>
-        /// Almacena la encuesta en la base de datos como si fuera nueva
-        /// </summary>
-        public void almacenar()
-        {
-            ///TODO: Almacenar los cambios en la base de datos.
-        }
-
-        /// <summary>
-        /// Actualiza los datos en la base de datos
-        /// </summary>
-        private void actualizar(string tituloViejo = null)
-        {
-            ///TODO: Almacenar los cambios en al base de datos.
         }
 
         /// <summary>

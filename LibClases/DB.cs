@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LibClases
 {
-    class DB
+    public class DB
     {
         /// <summary>
         /// Mapa de los usuarios
@@ -83,6 +83,12 @@ namespace LibClases
             return this.mapaRespuesta[nombre];
         }
 
+        public void borrarEncuesta(String titulo)
+        {
+            this.mapaEncuesta.Remove(titulo);
+            this.mapaRespuesta.Remove(titulo);
+        }
+
         /// <summary>
         /// Método que nos devuelve la lista de encuestas visibles
         /// </summary>
@@ -136,7 +142,7 @@ namespace LibClases
         /// <summary>
         /// Constructor que carga datos de forma manual
         /// </summary>
-        public DB()
+        private DB()
         {
             this.mapaUsuario = new Dictionary<string, Usuario>();
             this.mapaEncuesta = new Dictionary<string, Encuesta>();
@@ -153,6 +159,20 @@ namespace LibClases
             insertaEncuesta(en);
             Usuario us = new Usuario("Dios", "QuienComoDios");
             this.mapaUsuario[us.Cuenta] = us;
+        }
+
+        /// <summary>
+        /// Instancia privada de la base de datos
+        /// </summary>
+        private static DB instance = new DB();
+
+        /// <summary>
+        /// Lectura de la base de datos Singleton
+        /// </summary>
+        /// <returns></returns>
+        public static DB getDB()
+        {
+            return instance;
         }
     }
 }

@@ -24,7 +24,14 @@ namespace LibClases
         public Usuario(string cuenta)
         {
             this.cuenta = cuenta;
-            ///Carga
+            try
+            {
+                DB db = DB.getDB();
+                this.contraseña = db.cargaUsuario(cuenta).Contraseña;
+            }catch(KeyNotFoundException ex)
+            {
+                contraseña = null;
+            }
         }
 
         /// <summary>
@@ -46,6 +53,11 @@ namespace LibClases
             get { return this.cuenta; }
         }
 
+        public string Contraseña
+        {
+            get { return this.contraseña; }
+        }
+
         /// <summary>
         /// Comprueba si la contraseña es igual a la pasada
         /// </summary>
@@ -53,10 +65,20 @@ namespace LibClases
         /// <returns>Verdad si la contraseña es la misma, falso si no</returns>
         public bool comprobar(string contraseña)
         {
+            if (contraseña == null)
+                return false;
             return contraseña == this.contraseña;
         }
 
-        private string Encriptar(string password)
+        /// <summary>
+        /// Encriptar contraseña
+        /// </summary>
+        /// <author>
+        /// Pedro Renedo Fernández
+        /// </author>
+        /// <param name="password">Contraseña a encriptar</param>
+        /// <returns>Cadena con la contraseña encriptada</returns>
+        public static string Encriptar(string password)
         {
             byte[] bytes = Encoding.UTF8.GetBytes(password);
             SHA256 mySHA256 = SHA256.Create();

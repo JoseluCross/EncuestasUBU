@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LibClases
 {
-    class Respuesta
+    public class Respuesta
     {
         /// <summary>
         /// Encuesta a la que pertenece la respuesta
