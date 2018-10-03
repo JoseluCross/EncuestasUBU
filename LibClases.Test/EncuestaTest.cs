@@ -2,15 +2,20 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LibClases;
 
-namespace LibClasesTest
+namespace LibClases.Test
 {
     [TestClass]
-    public class UsuarioTest
+    public class EncuestaTest
     {
         [TestMethod]
         public void TestConstructor()
         {
-            Usuario u = new Usuario("user");
+        }
+
+        [TestMethod]
+        public void TestCambiarVisibilidad()
+        {
+
         }
     }
 }

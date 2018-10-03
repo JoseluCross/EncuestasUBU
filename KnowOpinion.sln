@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "www", "www\www.csproj", "{A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibClases", "LibClases\LibClases.csproj", "{52525F95-4F60-406A-BA16-4072480F3416}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibClases.Test", "LibClases.Test\LibClases.Test.csproj", "{7AD10060-6093-41E7-A0B8-7C504AACD0AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibClasesTest", "LibClases.Test\LibClasesTest.csproj", "{7AD10060-6093-41E7-A0B8-7C504AACD0AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
