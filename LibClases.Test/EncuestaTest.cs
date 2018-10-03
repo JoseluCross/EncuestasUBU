@@ -10,6 +10,7 @@ namespace LibClases.Test
         [TestMethod]
         public void TestConstructor()
         {
+
         }
 
         [TestMethod]

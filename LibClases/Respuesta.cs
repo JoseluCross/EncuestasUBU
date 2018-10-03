@@ -50,6 +50,9 @@ namespace LibClases
             get { return this.mensaje; }
         }
 
+        /// <summary>
+        /// Getter de la encuesta
+        /// </summary>
         public Encuesta Encuesta
         {
             get { return this.enc; }
