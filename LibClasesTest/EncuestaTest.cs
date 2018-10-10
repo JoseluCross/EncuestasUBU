@@ -31,6 +31,21 @@ namespace LibClasesTest
             Assert.AreNotEqual(visibilidadAnterior, enc.Visible);
         }
 
-
+        [TestMethod]
+        public void TestSetGet()
+        {
+            bool visibilidadAnterior = true;
+            Encuesta enc = new Encuesta("EncTest", "Descripcion", "img1.jpg", visibilidadAnterior);
+            string aux;
+            aux = "TituloNuevo";
+            enc.Titulo = aux;
+            Assert.AreEqual(aux, enc.Titulo);
+            aux = "DescripcionNueva";
+            enc.Descripcion = aux;
+            Assert.AreEqual(aux, enc.Descripcion);
+            aux = "NuevaRuta";
+            enc.RutaFoto = aux;
+            Assert.AreEqual(aux, enc.RutaFoto);
+        }
     }
 }
