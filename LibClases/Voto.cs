@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LibClases
 {
-    enum Voto
+    public enum Voto
     {
         ENFADADO, NEUTRAL, SATISFECHO, CONTENTO
     }
