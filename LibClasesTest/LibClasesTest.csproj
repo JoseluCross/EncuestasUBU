@@ -52,6 +52,7 @@
     <Compile Include="DBTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EncuestaTest.cs" />
+    <Compile Include="RespuestaTest.cs" />
     <Compile Include="UsuarioTest.cs" />
   </ItemGroup>
   <ItemGroup>

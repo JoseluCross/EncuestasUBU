@@ -85,5 +85,15 @@ namespace LibClases
             bytes = mySHA256.ComputeHash(bytes);
             return Encoding.ASCII.GetString(bytes);
         }
+		
+		/// <summary>
+        /// Sobreescribir método Equals
+        /// </summary>
+        /// <param name="obj">Objeto a comparar con nosostros</param>
+        /// <returns>True si tenemos la misma cuenta</returns>
+        public override bool Equals(object obj)
+        {
+            return obj.GetType() == typeof(Usuario) && ((Usuario)obj).Cuenta == this.Cuenta;
+        }
     }
 }

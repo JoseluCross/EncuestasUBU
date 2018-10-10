@@ -81,5 +81,15 @@ namespace LibClases
         {
             get { return this.visible; }
         }
+		
+		/// <summary>
+        /// Sobreescribir método Equals
+        /// </summary>
+        /// <param name="obj">Objeto a comparar con nosostros</param>
+        /// <returns>True si tenemos el mismo titulo</returns>
+        public override bool Equals(object obj)
+        {
+            return obj.GetType() == typeof(Encuesta) && ((Encuesta)obj).Titulo == this.Titulo;
+        }
     }
 }
