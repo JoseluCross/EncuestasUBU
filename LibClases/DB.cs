@@ -157,7 +157,20 @@ namespace LibClases
             insertaEncuesta(en);
             en = new Encuesta("ENC5", "Esta es la encuesta 5", "img5.jpg", false);
             insertaEncuesta(en);
+            insertaRespuesta(new Respuesta(en, Voto.ENFADADO, "Estoy enfadado"));
             Usuario us = new Usuario("Dios", "QuienComoDios");
+            this.mapaUsuario[us.Cuenta] = us;
+        }
+
+        /// <summary>
+        /// Hace un test vacío
+        /// </summary>
+        /// <param name="test">Discrimina entre el otro constructor</param>
+        private DB(Usuario us)
+        {
+            this.mapaUsuario = new Dictionary<string, Usuario>();
+            this.mapaEncuesta = new Dictionary<string, Encuesta>();
+            this.mapaRespuesta = new Dictionary<string, List<Respuesta>>();
             this.mapaUsuario[us.Cuenta] = us;
         }
 
@@ -173,6 +186,11 @@ namespace LibClases
         public static DB getDB()
         {
             return instance;
+        }
+
+        public static DB getTestDB(Usuario us)
+        {
+            return new DB(us);
         }
     }
 }
