@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LibClases;
 using System.Collections.Generic;
+using System;
+using System.Diagnostics;
 
 namespace LibClasesTest
 {
@@ -122,7 +124,7 @@ namespace LibClasesTest
                 db.cargaRespuesta("ENC1",0);
                 Assert.Fail();
             }
-            catch (KeyNotFoundException ex)
+            catch (Exception ex)
             {
 
             }
@@ -169,10 +171,47 @@ namespace LibClasesTest
             Assert.AreEqual(en, en2);
         }
 
+        /// <summary>
+        /// Actualiza los datos de una encuesta comprobando que se ha actualizado
+        /// </summary>
         [TestMethod]
         public void TestActualizaEncuesta()
         {
             Encuesta en = this.encuestas[0];
+            string description = "Nueva description";
+            en.Descripcion = description;
+            db.insertaEncuesta(en);
+            Assert.AreEqual(db.cargaEncuesta(en.Titulo).Descripcion,description);
+        }
+
+        /// <summary>
+        /// Comprueba que una respuesta se guarda
+        /// </summary>
+        [TestMethod]
+        public void TestInsertaRespuesta()
+        {
+            Respuesta res = new Respuesta(this.encuestas[0], Voto.CONTENTO, "Mensase");
+            db.insertaRespuesta(res);
+            Assert.IsTrue(db.cargaRespuestas(res.Encuesta.Titulo).Contains(res));
+        }
+
+        /// <summary>
+        /// Comprueba que una respuesta no se inserta si la encuesta no está guardada
+        /// </summary>
+        [TestMethod]
+        public void TestInsertaRespuestaEncuestaNoExiste()
+        {
+            Encuesta en = new Encuesta("Encuesta no guardada", "Desc", "foto.img");
+            Respuesta res = new Respuesta(en, Voto.CONTENTO, "Mensase");
+            try
+            {
+                db.insertaRespuesta(res);
+                Assert.Fail();
+            }catch(Exception ex)
+            {
+
+            }
+
         }
 
     }

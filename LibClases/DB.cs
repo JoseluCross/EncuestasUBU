@@ -126,8 +126,9 @@ namespace LibClases
         /// <param name="en">Encuesta a insertar</param>
         public void insertaEncuesta(Encuesta en)
         {
+            if (!this.mapaEncuesta.ContainsKey(en.Titulo))
+                this.mapaRespuesta[en.Titulo] = new List<Respuesta>();
             this.mapaEncuesta[en.Titulo] = en;
-            this.mapaRespuesta[en.Titulo] = new List<Respuesta>();
         }
 
         /// <summary>
@@ -136,7 +137,10 @@ namespace LibClases
         /// <param name="res">Respuesta que se va a insertar</param>
         public void insertaRespuesta(Respuesta res)
         {
-            this.mapaRespuesta[res.Encuesta.Titulo].Add(res);
+            if (this.mapaEncuesta.Keys.Contains(res.Encuesta.Titulo))
+                this.mapaRespuesta[res.Encuesta.Titulo].Add(res);
+            else
+                throw new Exception("Asignar respuesta a encuesta no existente");
         }
 
         /// <summary>
