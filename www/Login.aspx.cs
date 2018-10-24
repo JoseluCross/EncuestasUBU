@@ -14,7 +14,13 @@ namespace www
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            db = DB.getDB();
+            db = (DB)Application["db"];
+            if (db is null)
+            {
+                db = DB.getDB();
+                Application["db"] = db;
+            }
+
         }
     }
 }
