@@ -10,9 +10,9 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:Button ID="BA" runat="server" Height="97px" Text="Añadir Encuesta" Width="156px" />
-            <asp:Button ID="BE" runat="server" Height="97px" Text="Encuesta" Width="156px" />
-            <asp:Button ID="BCS" runat="server" Height="30px" Text="Cerrar Sesión" Width="150px" />
+            <asp:Button ID="BA" runat="server" Height="97px" Text="Añadir Encuesta" Width="156px" OnClick="BA_Click" />
+            <asp:Button ID="BE" runat="server" Height="97px" Text="Encuesta" Width="156px" OnClick="BE_Click" />
+            <asp:Button ID="BCS" runat="server" Height="30px" Text="Cerrar Sesión" Width="150px" OnClick="BCS_Click" />
         </div>
     </form>
 </body>

@@ -21,5 +21,22 @@ namespace www
             }
 
         }
+
+        protected void BA_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AñadirModificar.aspx");
+        }
+
+        protected void BE_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Encuestas.aspx");
+        }
+
+        protected void BCS_Click(object sender, EventArgs e)
+        {
+            Session["usuario"] = null;
+            Response.Redirect("Login");
+        }
     }
+
 }

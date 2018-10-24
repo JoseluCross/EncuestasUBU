@@ -10,7 +10,7 @@
 namespace www {
     
     
-    public partial class AñadirModificar {
+    public partial class Estadisticas {
         
         /// <summary>
         /// Control form1.
@@ -22,66 +22,102 @@ namespace www {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Control TT.
+        /// Control Titulo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TT;
+        protected global::System.Web.UI.WebControls.Label Titulo;
         
         /// <summary>
-        /// Control TF.
+        /// Control IME.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TF;
+        protected global::System.Web.UI.WebControls.Image IME;
         
         /// <summary>
-        /// Control CBV.
+        /// Control PME.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CBV;
+        protected global::System.Web.UI.WebControls.Label PME;
         
         /// <summary>
-        /// Control TD.
+        /// Control IE.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TD;
+        protected global::System.Web.UI.WebControls.Image IE;
         
         /// <summary>
-        /// Control ACC.
+        /// Control PE.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ACC;
+        protected global::System.Web.UI.WebControls.Label PE;
         
         /// <summary>
-        /// Control BC.
+        /// Control IC.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BC;
+        protected global::System.Web.UI.WebControls.Image IC;
         
         /// <summary>
-        /// Control BCS.
+        /// Control PC.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BCS;
+        protected global::System.Web.UI.WebControls.Label PC;
+        
+        /// <summary>
+        /// Control IMC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image IMC;
+        
+        /// <summary>
+        /// Control PC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PC;
+        
+        /// <summary>
+        /// Control Comentario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Comentario;
+        
+        /// <summary>
+        /// Control TC.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table TC;
     }
 }
