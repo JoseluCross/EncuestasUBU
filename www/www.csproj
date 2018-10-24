@@ -6,7 +6,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{ABD54378-6E0A-4FB3-A723-4E871F89CE3D}</ProjectGuid>
+    <ProjectGuid>{2312B782-51AE-49C2-B4B8-58113759539D}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -84,12 +84,34 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    <Content Include="AñadirModificar.aspx" />
+    <Content Include="Menu.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AñadirModificar.aspx.cs">
+      <DependentUpon>AñadirModificar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AñadirModificar.aspx.designer.cs">
+      <DependentUpon>AñadirModificar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.aspx.cs">
+      <DependentUpon>Menu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Menu.aspx.designer.cs">
+      <DependentUpon>Menu.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LibClases\LibClases.csproj">
+<<<<<<< HEAD
       <Project>{52525F95-4F60-406A-BA16-4072480F3416}</Project>
+=======
+      <Project>{C5B80084-F866-44E2-8554-32538CEEC16F}</Project>
+>>>>>>> 636f4789549f0f1ff9c46fc2536cb7131a9c1433
       <Name>LibClases</Name>
     </ProjectReference>
   </ItemGroup>
@@ -106,9 +128,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>23181</DevelopmentServerPort>
+          <DevelopmentServerPort>49433</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:23181/</IISUrl>
+          <IISUrl>http://localhost:49433/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
