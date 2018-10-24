@@ -34,7 +34,7 @@ namespace www
                 {
                     visibilidad.Text = "NO";
                 }
-                tr.
+               
 
                 i++;
             }
