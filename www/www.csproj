@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Content Include="AñadirModificar.aspx" />
     <Content Include="Menu.aspx" />
     <Content Include="Web.config" />
@@ -107,11 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LibClases\LibClases.csproj">
-<<<<<<< HEAD
-      <Project>{52525F95-4F60-406A-BA16-4072480F3416}</Project>
-=======
       <Project>{C5B80084-F866-44E2-8554-32538CEEC16F}</Project>
->>>>>>> 636f4789549f0f1ff9c46fc2536cb7131a9c1433
       <Name>LibClases</Name>
     </ProjectReference>
   </ItemGroup>
