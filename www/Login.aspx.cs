@@ -22,5 +22,23 @@ namespace www
             }
 
         }
+
+        protected void B_Acceder_Click(object sender, EventArgs e)
+        {
+            TextBox cuenta = (TextBox)FindControl("TB_Cuenta");
+            TextBox pass = (TextBox)FindControl("TB_Pass");
+            Usuario u = db.cargaUsuario(cuenta.Text);
+            bool res = u.comprobar(Usuario.Encriptar(pass.Text));
+            Label lbl = (Label)FindControl("L_Error");
+            if (!res)
+            {
+                lbl.Text += "Credenciales incorrectas";
+            }
+            else
+            {
+                Session["usuario"] = u;
+                Response.Redirect("Menu.aspx");
+            }
+        }
     }
 }
