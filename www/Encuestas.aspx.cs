@@ -22,8 +22,7 @@ namespace www
             }
 
             List<Encuesta> enc = db.cargaEncuestas();
-            Table t = (Table)FindControl("T_Encuestas");
-            int i = 0;
+            int i = 1;
             foreach(Encuesta en in enc)
             {
                 TableRow tr = new TableRow();
@@ -65,13 +64,16 @@ namespace www
                 tr.Controls.Add(borrar);
 
                 v.ID = "BTN_V_" + i;
+                v.Click += new EventHandler(V_Click);
                 es.ID = "BTN_ES_" + i;
+                es.Click += new EventHandler(ES_Click);
                 ed.ID = "BTN_ED_" + i;
+                ed.Click += new EventHandler(ED_Click);
                 b.ID = "BTN_B_" + i;
 
                 
 
-                t.Controls.Add(tr);
+                T_Encuestas.Controls.Add(tr);
                 i++;
             }
         }
@@ -82,23 +84,47 @@ namespace www
             Button b = (Button)sender;
             int i = getIdentifier(b.ID);
 
-            Table t = (Table)FindControl("T_Encuestas");
-            string title = t.Rows[i].Cells[1].Text;
-
+            string title = T_Encuestas.Rows[i].Cells[1].Text;
+            
             Encuesta enc = db.cargaEncuesta(title);
-            if(!db.limiteVisible())
+            if (db.limiteVisible() && !enc.Visible)
+            {
+                LBL_Error.Text = "Limite de visibles alcanzados";
+            }
+            else
+            {
                 enc.cambiarVisibilidad();
+                if (enc.Visible)
+                {
+                    b.Text = "👁";
+                }
+                else
+                {
+                    b.Text = "❌";
+                }
+                db.insertaEncuesta(enc);
+            }
 
         }
 
         protected void ES_Click(object sender, EventArgs e)
         {
+            Button b = (Button)sender;
+            int i = getIdentifier(b.ID);
 
+            string title = T_Encuestas.Rows[i].Cells[1].Text;
+
+            Response.Redirect("Estadisticas.aspx?m=" + title);
         }
 
         protected void ED_Click(object sender, EventArgs e)
         {
+            Button b = (Button)sender;
+            int i = getIdentifier(b.ID);
 
+            string title = T_Encuestas.Rows[i].Cells[1].Text;
+
+            Response.Redirect("AñadirModificar.aspx?m="+title);
         }
 
         protected void B_Click(object sender, EventArgs e)

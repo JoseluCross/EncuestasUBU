@@ -10,7 +10,9 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <h1>Lista de Encuestas</h1>
+            <h1>Lista de Encuestas
+            </h1>
+            <asp:Label ID="LBL_Error" runat="server" Text=""></asp:Label>
             <asp:Table ID="T_Encuestas" runat="server">
                 <asp:TableHeaderRow>
                     <asp:TableHeaderCell>Nº</asp:TableHeaderCell>

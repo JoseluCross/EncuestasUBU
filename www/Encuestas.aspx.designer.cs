@@ -22,6 +22,15 @@ namespace www {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// Control LBL_Error.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LBL_Error;
+        
+        /// <summary>
         /// Control T_Encuestas.
         /// </summary>
         /// <remarks>
