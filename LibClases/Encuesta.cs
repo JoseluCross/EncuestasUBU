@@ -91,5 +91,14 @@ namespace LibClases
         {
             return obj.GetType() == typeof(Encuesta) && ((Encuesta)obj).Titulo == this.Titulo;
         }
+
+        /// <summary>
+        /// HashCode de la encuesta
+        /// </summary>
+        /// <returns>Hash</returns>
+        public override int GetHashCode()
+        {
+            return titulo.GetHashCode();
+        }
     }
 }

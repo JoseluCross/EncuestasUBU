@@ -67,5 +67,14 @@ namespace LibClases
         {
             return obj.GetType() == typeof(Respuesta) && ((Respuesta)obj).Encuesta == this.Encuesta && ((Respuesta)obj).Voto == this.Voto && ((Respuesta)obj).Mensaje == this.Mensaje;
         }
+
+        /// <summary>
+        /// Hash code de la respuesta
+        /// </summary>
+        /// <returns>Hash</returns>
+        public override int GetHashCode()
+        {
+            return mensaje.GetHashCode();
+        }
     }
 }

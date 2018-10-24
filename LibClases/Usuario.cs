@@ -95,5 +95,14 @@ namespace LibClases
         {
             return obj.GetType() == typeof(Usuario) && ((Usuario)obj).Cuenta == this.Cuenta;
         }
+
+        /// <summary>
+        /// Hash code de usuario
+        /// </summary>
+        /// <returns>Hash</returns>
+        public override int GetHashCode()
+        {
+            return cuenta.GetHashCode();
+        }
     }
 }
