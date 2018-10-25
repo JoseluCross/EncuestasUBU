@@ -23,6 +23,8 @@
                     <asp:TableHeaderCell>&#x1f5d1;</asp:TableHeaderCell>
                 </asp:TableHeaderRow>
             </asp:Table>
+            <asp:Button ID="BA" runat="server" Text="Atras" OnClick="BA_Click" />
+            <asp:Button ID="BCS" runat="server" Text="Cerrar Sesión" OnClick="BCS_Click" />
         </div>
     </form>
 </body>

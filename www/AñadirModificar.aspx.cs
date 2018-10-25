@@ -96,7 +96,7 @@ namespace www
         protected void BCS_Click(object sender, EventArgs e)
         {
             Session["usuario"] = null;
-            Response.Redirect("Login");
+            Response.Redirect("Login.aspx");
         }
     }
 }

@@ -94,13 +94,13 @@ namespace www {
         protected global::System.Web.UI.WebControls.Image IMC;
         
         /// <summary>
-        /// Control PC.
+        /// Control PMC.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PC;
+        protected global::System.Web.UI.WebControls.Label PMC;
         
         /// <summary>
         /// Control Comentario.
@@ -119,5 +119,23 @@ namespace www {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table TC;
+        
+        /// <summary>
+        /// Control BA.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BA;
+        
+        /// <summary>
+        /// Control BCS.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BCS;
     }
 }

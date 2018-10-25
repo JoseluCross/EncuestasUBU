@@ -136,6 +136,17 @@ namespace www
         {
             return Int32.Parse(ID.Split('_')[2]);
         }
+
+        protected void BA_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Menu.aspx");
+        }
+
+        protected void BCS_Click(object sender, EventArgs e)
+        {
+            Session["usuario"] = null;
+            Response.Redirect("Login.aspx");
+        }
     }
 
     

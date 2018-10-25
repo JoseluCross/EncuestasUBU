@@ -26,6 +26,7 @@ namespace www
                 db = DB.getDB();
                 Application["db"] = db;
             }
+            aux = Request.QueryString["m"];
             Label titulo = (Label)FindControl("Titulo");
             enc = db.cargaEncuesta(aux);
             resp = db.cargaRespuestas(aux);
@@ -41,8 +42,37 @@ namespace www
                     case Voto.ENFADADO:
                         this.me++;
                         break;
+                    case Voto.NEUTRAL:
+                        this.e++;
+                        break;
+                    case Voto.SATISFECHO:
+                        this.c++;
+                        break;
+                    case Voto.CONTENTO:
+                        this.mc++;
+                        break;
                 }
+                TableRow tr = new TableRow();
+                TableCell n = new TableCell();
+                n.Text = r.Mensaje;
+                tr.Controls.Add(n);
+                TC.Controls.Add(tr);
             }
+            me.Text = ": " + this.me.ToString();
+            e.Text = ": " + this.e.ToString();
+            c.Text = ": " + this.c.ToString();
+            mc.Text = ": " + this.mc.ToString();
+        }
+
+        protected void BA_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Encuestas.aspx");
+        }
+
+        protected void BCS_Click(object sender, EventArgs e)
+        {
+            Session["usuario"] = null;
+            Response.Redirect("Login.aspx");
         }
     }
 }
