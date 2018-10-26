@@ -66,8 +66,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ElegirEncuesta.aspx" />
     <Content Include="Encuestas.aspx" />
     <Content Include="Estadisticas.aspx" />
+    <Content Include="images\encImg\img1.jpg" />
     <Content Include="images\voto\CONTENTO.png" />
     <Content Include="images\voto\ENFADADO.png" />
     <Content Include="images\voto\NEUTRAL.png" />
@@ -76,6 +78,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ElegirEncuesta.aspx.cs">
+      <DependentUpon>ElegirEncuesta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ElegirEncuesta.aspx.designer.cs">
+      <DependentUpon>ElegirEncuesta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Encuestas.aspx.cs">
       <DependentUpon>Encuestas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -124,9 +133,7 @@
       <Name>LibClases</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="images\encImg\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
