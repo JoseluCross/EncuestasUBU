@@ -28,21 +28,21 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:ImageButton ID="IB_ENFADADO" runat="server" />
+                            <asp:ImageButton ID="IB_ENFADADO" runat="server" ImageUrl="images/voto/ENFADADO.png" Width="20%" OnClick="IB_ENFADADO_Click" />
                         </td>
                         <td>
-                            <asp:ImageButton ID="IB_NEUTRAL" runat="server" />
+                            <asp:ImageButton ID="IB_NEUTRAL" runat="server" ImageUrl="images/voto/NEUTRAL.png" Width="20%" OnClick="IB_NEUTRAL_Click"/>
                         </td>
                         <td>
-                            <asp:ImageButton ID="IB_SATISFECHO" runat="server" />
+                            <asp:ImageButton ID="IB_SATISFECHO" runat="server" ImageUrl="images/voto/SATISFECHO.png" Width="20%" OnClick="IB_SATISFECHO_Click" />
                         </td>
                         <td>
-                            <asp:ImageButton ID="IB_CONTENTO" runat="server" />
+                            <asp:ImageButton ID="IB_CONTENTO" runat="server" ImageUrl="images/voto/CONTENTO.png" Width="20%" OnClick="IB_CONTENTO_Click"/>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button ID="B_Atras" runat="server" Text="Atrás" />
+                            <asp:Button ID="B_Atras" runat="server" Text="Atrás" OnClick="B_Atras_Click"  />
                         </td>
                     </tr>
                 </tbody>

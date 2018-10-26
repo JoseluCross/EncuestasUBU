@@ -75,6 +75,7 @@
     <Content Include="images\voto\NEUTRAL.png" />
     <Content Include="images\voto\SATISFECHO.png" />
     <Content Include="Login.aspx" />
+    <Content Include="Votar.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +106,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Votar.aspx.cs">
+      <DependentUpon>Votar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Votar.aspx.designer.cs">
+      <DependentUpon>Votar.aspx</DependentUpon>
     </Compile>
     <Content Include="AñadirModificar.aspx" />
     <Content Include="Menu.aspx" />
