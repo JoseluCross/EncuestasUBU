@@ -31,8 +31,8 @@ namespace www
             enc = db.cargaEncuesta(aux);
             resp = db.cargaRespuestas(aux);
             titulo.Text = enc.Titulo;
-            Label me = (Label)FindControl("PE");
-            Label e = (Label)FindControl("PME");
+            Label me = (Label)FindControl("PME");
+            Label e = (Label)FindControl("PE");
             Label c = (Label)FindControl("PC");
             Label mc = (Label)FindControl("PMC");
             foreach (Respuesta r in resp)
