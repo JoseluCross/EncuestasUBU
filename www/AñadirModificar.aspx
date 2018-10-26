@@ -49,6 +49,7 @@
         <asp:Button ID="ACC" runat="server" Height="57px" Text="Añadir/Confirmar cambios" Width="164px" OnClick="ACC_Click" />
         <asp:Button ID="BC" runat="server" Text="Cancelar" OnClick="BC_Click" />
         <asp:Button ID="BCS" runat="server" Text="Cerrar Sesión" OnClick="BCS_Click" />
+        <asp:Label ID="CE" runat="server" Text="Ya existe una encuesta con ese Título" Visible="false"></asp:Label>
     </form>
 </body>
 </html>

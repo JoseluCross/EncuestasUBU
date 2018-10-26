@@ -21,7 +21,7 @@ namespace www
                 db = DB.getDB();
                 Application["db"] = db;
             }
-            string aux = Request.QueryString["m"];
+            aux = Request.QueryString["m"];
             CheckBox vis = (CheckBox)FindControl("CBV");
             if (aux != null)
             {
@@ -55,12 +55,22 @@ namespace www
 
         protected void ACC_Click(object sender, EventArgs e)
         {
+            Label ce = (Label)FindControl("CE");
+            ce.Visible = false;
             TextBox titulo = (TextBox)FindControl("TT");
             TextBox foto = (TextBox)FindControl("TF");
             TextBox desc = (TextBox)FindControl("TD");
             CheckBox vis = (CheckBox)FindControl("CBV");
             if (aux == null)
             {
+                List<Encuesta> lenc = db.cargaEncuestas();
+                foreach(Encuesta ec in lenc)
+                {
+                    if(ec.Titulo == titulo.Text)
+                    {
+                        ce.Visible = true;
+                    }
+                }
                 enc.Titulo = titulo.Text;
                 if (vis.Visible)
                 {
@@ -69,14 +79,17 @@ namespace www
             }
             enc.Descripcion = desc.Text;
             enc.RutaFoto = foto.Text;
-            db.insertaEncuesta(enc);
-            if (aux == null)
+            if (!ce.Visible)
             {
-                Response.Redirect("Menu.aspx");
-            }
-            else
-            {
-                Response.Redirect("Encuestas.aspx");
+                db.insertaEncuesta(enc);
+                if (aux == null)
+                {
+                    Response.Redirect("Menu.aspx");
+                }
+                else
+                {
+                    Response.Redirect("Encuestas.aspx");
+                }
             }
         }
 
