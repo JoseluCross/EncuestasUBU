@@ -13,7 +13,7 @@
             <table style="text-align:center">
                 <thead>
                     <tr>
-                        <th colspan="4">
+                        <th colspan="9">
                             
                             <asp:Label ID="L_Titulo" runat="server" Text=""></asp:Label>
                             
@@ -22,23 +22,28 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="4">
+                        <td colspan="9">
                             <asp:Label ID="L_Descripcion" runat="server" Text=""></asp:Label>
                         </td>
                     </tr>
                     <tr>
+                        <td></td>
                         <td>
                             <asp:ImageButton ID="IB_ENFADADO" runat="server" ImageUrl="images/voto/ENFADADO.png" Width="20%" OnClick="IB_ENFADADO_Click" />
                         </td>
+                        <td></td>
                         <td>
                             <asp:ImageButton ID="IB_NEUTRAL" runat="server" ImageUrl="images/voto/NEUTRAL.png" Width="20%" OnClick="IB_NEUTRAL_Click"/>
                         </td>
+                        <td></td>
                         <td>
                             <asp:ImageButton ID="IB_SATISFECHO" runat="server" ImageUrl="images/voto/SATISFECHO.png" Width="20%" OnClick="IB_SATISFECHO_Click" />
                         </td>
+                        <td></td>
                         <td>
                             <asp:ImageButton ID="IB_CONTENTO" runat="server" ImageUrl="images/voto/CONTENTO.png" Width="20%" OnClick="IB_CONTENTO_Click"/>
                         </td>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>

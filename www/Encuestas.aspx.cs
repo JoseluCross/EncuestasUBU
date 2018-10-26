@@ -21,6 +21,12 @@ namespace www
                 db = DB.getDB();
                 Application["db"] = db;
             }
+
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+
             object bID = Session["borrar"];
             if(bID == null)
             {

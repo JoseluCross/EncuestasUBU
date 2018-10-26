@@ -26,6 +26,11 @@ namespace www
                 db = DB.getDB();
                 Application["db"] = db;
             }
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+
             aux = Request.QueryString["m"];
             Label titulo = (Label)FindControl("Titulo");
             enc = db.cargaEncuesta(aux);

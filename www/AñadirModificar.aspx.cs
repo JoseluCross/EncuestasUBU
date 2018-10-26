@@ -21,6 +21,12 @@ namespace www
                 db = DB.getDB();
                 Application["db"] = db;
             }
+
+            if (Session["usuario"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+
             aux = Request.QueryString["m"];
             CheckBox vis = (CheckBox)FindControl("CBV");
             if (aux != null)

@@ -34,6 +34,11 @@
                     <asp:Button ID="B_Acceder" runat="server" Text="Loguearse" Width="311px" OnClick="B_Acceder_Click" />
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <asp:Button ID="B_Atras" runat="server" OnClick="B_Atras_Click" Text="Atrás" />
+                </td>
+            </tr>
         </table>
     </form>
 </body>

@@ -32,13 +32,18 @@ namespace www
             Label lbl = (Label)FindControl("L_Error");
             if (!res)
             {
-                lbl.Text += "Credenciales incorrectas";
+                lbl.Text = "Credenciales incorrectas";
             }
             else
             {
                 Session["usuario"] = u;
                 Response.Redirect("Menu.aspx");
             }
+        }
+
+        protected void B_Atras_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ElegirEncuesta.aspx");
         }
     }
 }
