@@ -214,5 +214,19 @@ namespace LibClasesTest
 
         }
 
+        [TestMethod]
+        public void TestBorraEncuesta()
+        {
+            this.db.borrarEncuesta("ENC2");
+            try
+            {
+                this.db.cargaEncuesta("ENC2");
+                Assert.Fail();
+            }catch(KeyNotFoundException ex)
+            {
+
+            }
+        }
+
     }
 }

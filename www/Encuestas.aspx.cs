@@ -11,6 +11,7 @@ namespace www
     public partial class Encuestas : System.Web.UI.Page
     {
         private DB db;
+        private int borrar;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,6 +20,16 @@ namespace www
             {
                 db = DB.getDB();
                 Application["db"] = db;
+            }
+            object bID = Session["borrar"];
+            if(bID == null)
+            {
+                this.borrar = 0;
+            }
+            else
+            {
+                this.borrar = Int32.Parse((string)bID);
+                
             }
 
             List<Encuesta> enc = db.cargaEncuestas();
@@ -70,6 +81,7 @@ namespace www
                 ed.ID = "BTN_ED_" + i;
                 ed.Click += new EventHandler(ED_Click);
                 b.ID = "BTN_B_" + i;
+                b.Click += new EventHandler(B_Click);
 
                 
 
@@ -129,7 +141,37 @@ namespace www
 
         protected void B_Click(object sender, EventArgs e)
         {
+            Button b = (Button)sender;
+            int i = getIdentifier(b.ID);
+            Session["borrar"] = ""+i;
 
+            LBL_BORRAR.Text = "¿Seguro quieres borrar " + T_Encuestas.Rows[i].Cells[1].Text + "?";
+            LBL_BORRAR.Visible = true;
+            BTN_CONFIRMAR.Visible = true;
+            BTN_CONFIRMAR.Text = "Si";
+            BTN_CANCELAR.Visible = true;
+            BTN_CANCELAR.Text = "No";
+
+        }
+
+        protected void Cancelar_Click(object sender, EventArgs e)
+        {
+            resetBorrar();
+            Session["borrar"] = 0;
+        }
+
+        protected void Confirmar_Click(object sender, EventArgs e)
+        {
+            string title = T_Encuestas.Rows[this.borrar].Cells[1].Text;
+            db.borrarEncuesta(title);
+            resetBorrar();
+        }
+
+        private void resetBorrar()
+        {
+            //LBL_BORRAR.Visible = false;
+            BTN_CANCELAR.Visible = false;
+            BTN_CONFIRMAR.Visible = false;
         }
 
         private int getIdentifier(string ID)

@@ -23,6 +23,14 @@
                     <asp:TableHeaderCell>&#x1f5d1;</asp:TableHeaderCell>
                 </asp:TableHeaderRow>
             </asp:Table>
+            <table>
+                <tr>
+                    <td><asp:Label ID="LBL_BORRAR" runat="server" Visible="false"></asp:Label></td>
+                    <td><asp:Button ID="BTN_CONFIRMAR" runat="server" Text="Si" Visible="false" OnClick="Confirmar_Click"/></td>
+                    <td><asp:Button ID="BTN_CANCELAR" runat="server" Text="No" Visible="false" OnClick="Cancelar_Click"/></td>
+                </tr>
+            </table>
+            
             <asp:Button ID="BA" runat="server" Text="Atras" OnClick="BA_Click" />
             <asp:Button ID="BCS" runat="server" Text="Cerrar Sesión" OnClick="BCS_Click" />
         </div>

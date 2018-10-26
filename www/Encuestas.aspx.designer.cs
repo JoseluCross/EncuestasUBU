@@ -40,6 +40,33 @@ namespace www {
         protected global::System.Web.UI.WebControls.Table T_Encuestas;
         
         /// <summary>
+        /// Control LBL_BORRAR.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LBL_BORRAR;
+        
+        /// <summary>
+        /// Control BTN_CONFIRMAR.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BTN_CONFIRMAR;
+        
+        /// <summary>
+        /// Control BTN_CANCELAR.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BTN_CANCELAR;
+        
+        /// <summary>
         /// Control BA.
         /// </summary>
         /// <remarks>
