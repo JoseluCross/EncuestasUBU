@@ -66,6 +66,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Comentario.aspx" />
     <Content Include="ElegirEncuesta.aspx" />
     <Content Include="Encuestas.aspx" />
     <Content Include="Estadisticas.aspx" />
@@ -79,6 +80,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comentario.aspx.cs">
+      <DependentUpon>Comentario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Comentario.aspx.designer.cs">
+      <DependentUpon>Comentario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ElegirEncuesta.aspx.cs">
       <DependentUpon>ElegirEncuesta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
