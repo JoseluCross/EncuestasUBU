@@ -31,10 +31,26 @@ namespace www
                 this.borrar = Int32.Parse((string)bID);
                 
             }
+            generaTablas();
+            
+        }
+
+        private void generaTablas()
+        {
+            T_Encuestas.Controls.Clear();
+            TableHeaderRow th = new TableHeaderRow();
+            string[] fields = { "Nº", "Título", "👁", "✏", "📈", "🗑" };
+            for (int j = 0; j < fields.Length; j++)
+            {
+                TableHeaderCell thc = new TableHeaderCell();
+                thc.Text = fields[j];
+                th.Controls.Add(thc);
+            }
+            T_Encuestas.Controls.Add(th);
 
             List<Encuesta> enc = db.cargaEncuestas();
             int i = 1;
-            foreach(Encuesta en in enc)
+            foreach (Encuesta en in enc)
             {
                 TableRow tr = new TableRow();
                 TableCell n = new TableCell();
@@ -83,7 +99,7 @@ namespace www
                 b.ID = "BTN_B_" + i;
                 b.Click += new EventHandler(B_Click);
 
-                
+
 
                 T_Encuestas.Controls.Add(tr);
                 i++;
@@ -157,7 +173,7 @@ namespace www
         protected void Cancelar_Click(object sender, EventArgs e)
         {
             resetBorrar();
-            Session["borrar"] = 0;
+            Session["borrar"] = "0";
         }
 
         protected void Confirmar_Click(object sender, EventArgs e)
@@ -169,9 +185,10 @@ namespace www
 
         private void resetBorrar()
         {
-            //LBL_BORRAR.Visible = false;
+            LBL_BORRAR.Visible = false;
             BTN_CANCELAR.Visible = false;
             BTN_CONFIRMAR.Visible = false;
+            generaTablas();
         }
 
         private int getIdentifier(string ID)

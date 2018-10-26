@@ -13,7 +13,7 @@
             <table>
                 <tr>
                     <td>
-                        <h1>Título:</h1>
+                        <h4>Título:</h4>
                     </td>
                     <td colspan="2">
                         <asp:TextBox ID="TT" runat="server" Width="207px"></asp:TextBox>
@@ -23,7 +23,7 @@
                     <td>
                     </td>
                     <td>
-                        <h1>Foto:</h1>
+                        <h4>Foto:</h4>
                         <asp:TextBox ID="TF" runat="server"></asp:TextBox>
                     </td>
                     <td>
@@ -31,10 +31,10 @@
                 </tr>
                 <tr>
                     <td>
-                        <h1>Descripción:</h1>
+                        <h4>Descripción:</h4>
                     </td>
                     <td>
-                        <h1>Visibilidad:</h1>
+                        <h4>Visibilidad:</h4>
                         <asp:CheckBox ID="CBV" runat="server" />
                     </td>
                     <td></td>

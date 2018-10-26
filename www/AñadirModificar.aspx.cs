@@ -32,10 +32,13 @@ namespace www
                 {
                     Encuesta enc = db.cargaEncuesta(aux);
                     titulo.Text = enc.Titulo;
-                    titulo.ReadOnly = false;
+                    titulo.ReadOnly = true;
                     vis.Visible = false;
-                    foto.Text = enc.RutaFoto;
-                    desc.Text = enc.Descripcion;
+
+                    if(foto.Text == "")
+                        foto.Text = enc.RutaFoto;
+                    if(desc.Text == "")
+                        desc.Text = enc.Descripcion;
                     this.enc = new Encuesta(enc.Titulo, enc.Descripcion, enc.RutaFoto, enc.Visible);
                 }catch(Exception ex)
                 {
@@ -64,24 +67,25 @@ namespace www
             if (aux == null)
             {
                 List<Encuesta> lenc = db.cargaEncuestas();
-                foreach(Encuesta ec in lenc)
+                foreach (Encuesta ec in lenc)
                 {
                     if(ec.Titulo == titulo.Text)
                     {
                         ce.Visible = true;
+                        break;
                     }
                 }
                 enc.Titulo = titulo.Text;
                 if (vis.Visible)
                 {
-                    enc.cambiarVisibilidad();
+                    this.enc.cambiarVisibilidad();
                 }
             }
-            enc.Descripcion = desc.Text;
-            enc.RutaFoto = foto.Text;
+            this.enc.Descripcion = desc.Text;
+            this.enc.RutaFoto = foto.Text;
             if (!ce.Visible)
             {
-                db.insertaEncuesta(enc);
+                db.insertaEncuesta(this.enc);
                 if (aux == null)
                 {
                     Response.Redirect("Menu.aspx");

@@ -127,7 +127,9 @@ namespace LibClases
         public void insertaEncuesta(Encuesta en)
         {
             if (!this.mapaEncuesta.ContainsKey(en.Titulo))
+            {
                 this.mapaRespuesta[en.Titulo] = new List<Respuesta>();
+            }
             this.mapaEncuesta[en.Titulo] = en;
         }
 
