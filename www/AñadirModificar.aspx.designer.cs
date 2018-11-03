@@ -31,6 +31,15 @@ namespace www {
         protected global::System.Web.UI.WebControls.TextBox TT;
         
         /// <summary>
+        /// Control TT_VAL.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator TT_VAL;
+        
+        /// <summary>
         /// Control TF.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace www {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TF;
+        
+        /// <summary>
+        /// Control TF_VAL.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator TF_VAL;
         
         /// <summary>
         /// Control CBV.
@@ -56,6 +74,15 @@ namespace www {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TD;
+        
+        /// <summary>
+        /// Control TD_VAL.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator TD_VAL;
         
         /// <summary>
         /// Control ACC.

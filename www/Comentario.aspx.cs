@@ -25,8 +25,13 @@ namespace www
                 db = DB.getDB();
                 Application["db"] = db;
             }
-            aux = Request.QueryString["m"];
-            v = Int32.Parse(Request.QueryString["tv"]);
+            String aux = Request.QueryString["m"];
+            String vAux = Request.QueryString["tv"];
+            if (aux == null || vAux == null)
+                Response.Redirect("ElegirEncuesta.aspx");
+
+            this.aux = aux;
+            v = Int32.Parse(vAux);
             enc = db.cargaEncuesta(aux);
             Label titulo = (Label)FindControl("Titulo");
             Image imagen = (Image)FindControl("IV");
@@ -56,7 +61,7 @@ namespace www
 
         protected void BCS_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Voto.aspx?m=" + aux);
+            Response.Redirect("Votar.aspx?m=" + aux);
         }
 
         protected void BC_Click(object sender, EventArgs e)

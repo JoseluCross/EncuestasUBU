@@ -82,7 +82,7 @@ namespace www
                     }
                 }
                 enc.Titulo = titulo.Text;
-                if (vis.Visible)
+                if (vis.Checked)
                 {
                     this.enc.cambiarVisibilidad();
                 }

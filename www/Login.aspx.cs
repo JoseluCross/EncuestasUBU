@@ -27,9 +27,19 @@ namespace www
         {
             TextBox cuenta = (TextBox)FindControl("TB_Cuenta");
             TextBox pass = (TextBox)FindControl("TB_Pass");
-            Usuario u = db.cargaUsuario(cuenta.Text);
-            bool res = u.comprobar(Usuario.Encriptar(pass.Text));
+            bool res;
             Label lbl = (Label)FindControl("L_Error");
+            Usuario u = null;
+            try
+            {
+                u = db.cargaUsuario(cuenta.Text);
+                res = u.comprobar(Usuario.Encriptar(pass.Text));
+            }
+            catch(KeyNotFoundException ex)
+            {
+                res = false;
+            }
+            
             if (!res)
             {
                 lbl.Text = "Credenciales incorrectas";

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AñadirModificar.aspx.cs" Inherits="www.AñadirModificar" %>
+﻿    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AñadirModificar.aspx.cs" Inherits="www.AñadirModificar" %>
 
 <!DOCTYPE html>
 
@@ -17,6 +17,12 @@
                     </td>
                     <td colspan="2">
                         <asp:TextBox ID="TT" runat="server" Width="207px"></asp:TextBox>
+                        <asp:RequiredFieldValidator id="TT_VAL" runat="server"
+                          ValidationGroup="VAL_POST"
+                          ControlToValidate="TT"
+                          ErrorMessage="El título es obligatorio"
+                          ForeColor="Red">
+                        </asp:RequiredFieldValidator>
                     </td>
                 </tr>
                 <tr>
@@ -25,6 +31,12 @@
                     <td>
                         <h4>Foto:</h4>
                         <asp:TextBox ID="TF" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator id="TF_VAL" runat="server"
+                          ValidationGroup="VAL_POST"
+                          ControlToValidate="TF"
+                          ErrorMessage="La foto es obligatoria"
+                          ForeColor="Red">
+                        </asp:RequiredFieldValidator>
                     </td>
                     <td>
                     </td>
@@ -42,11 +54,17 @@
                 <tr>
                     <td colspan="3">
                         <asp:TextBox ID="TD" runat="server" Height="41px" TextMode="MultiLine" Width="322px" ></asp:TextBox>
+                        <asp:RequiredFieldValidator id="TD_VAL" runat="server"
+                          ValidationGroup="VAL_POST"
+                          ControlToValidate="TD"
+                          ErrorMessage="La descripción es obligatoria"
+                          ForeColor="Red">
+                        </asp:RequiredFieldValidator>
                     </td>
                 </tr>
             </table>
         </div>
-        <asp:Button ID="ACC" runat="server" Height="57px" Text="Añadir/Confirmar cambios" Width="164px" OnClick="ACC_Click" />
+        <asp:Button ID="ACC" runat="server" Height="57px" Text="Añadir/Confirmar cambios" ValidationGroup="VAL_POST" Width="164px" OnClick="ACC_Click" />
         <asp:Button ID="BC" runat="server" Text="Cancelar" OnClick="BC_Click" />
         <asp:Button ID="BCS" runat="server" Text="Cerrar Sesión" OnClick="BCS_Click" />
         <asp:Label ID="CE" runat="server" Text="Ya existe una encuesta con ese Título" Visible="false"></asp:Label>
