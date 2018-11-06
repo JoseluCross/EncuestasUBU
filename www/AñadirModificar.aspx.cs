@@ -46,7 +46,9 @@ namespace www
                     if(desc.Text == "")
                         desc.Text = enc.Descripcion;
                     this.enc = new Encuesta(enc.Titulo, enc.Descripcion, enc.RutaFoto, enc.Visible);
+#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
                 }catch(Exception ex)
+#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
                 {
                     Response.Redirect("Encuestas.aspx");
                 }

@@ -73,7 +73,9 @@ namespace SeleniumTests2
 
                     driver.FindElement(By.Id("BTN_V_" + index.ToString()));
                 }
+#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
                 catch (Exception ex)
+#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
                 {
                     index--;
                     break;
@@ -118,7 +120,9 @@ namespace SeleniumTests2
 
                     driver.FindElement(By.Id("BTN_V_" + index.ToString()));
                 }
+#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
                 catch (Exception ex)
+#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
                 {
                     index--;
                     break;
@@ -162,7 +166,9 @@ namespace SeleniumTests2
                 {
                     driver.FindElement(By.Id("BTN_ED_" + index.ToString()));
                 }
+#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
                 catch (Exception ex)
+#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
                 {
                     index--;
                     break;

@@ -58,7 +58,9 @@ namespace LibClasesTest
             try
             {
                 db.cargaUsuario("Dios");
+#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             }catch(KeyNotFoundException ex)
+#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             {
                 Assert.Fail();
             }
@@ -74,7 +76,9 @@ namespace LibClasesTest
             {
                 db.cargaUsuario("NoExisto");
             }
+#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             catch (KeyNotFoundException ex)
+#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             {
                 
             }
@@ -90,7 +94,9 @@ namespace LibClasesTest
             {
                 db.cargaEncuesta("ENC1");
             }
+#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             catch (KeyNotFoundException ex)
+#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             {
                 Assert.Fail();
             }
@@ -107,7 +113,9 @@ namespace LibClasesTest
                 db.cargaEncuesta("ENC0");
                 Assert.Fail();
             }
+#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             catch (KeyNotFoundException ex)
+#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             {
                 
             }
@@ -124,7 +132,9 @@ namespace LibClasesTest
                 db.cargaRespuesta("ENC1",0);
                 Assert.Fail();
             }
+#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             catch (Exception ex)
+#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             {
 
             }
@@ -140,7 +150,9 @@ namespace LibClasesTest
             {
                 db.cargaRespuesta("ENC5", 0);
             }
+#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             catch (KeyNotFoundException ex)
+#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             {
                 Assert.Fail();
             }
@@ -207,7 +219,9 @@ namespace LibClasesTest
             {
                 db.insertaRespuesta(res);
                 Assert.Fail();
+#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             }catch(Exception ex)
+#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             {
 
             }
@@ -222,7 +236,9 @@ namespace LibClasesTest
             {
                 this.db.cargaEncuesta("ENC2");
                 Assert.Fail();
+#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             }catch(KeyNotFoundException ex)
+#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             {
 
             }

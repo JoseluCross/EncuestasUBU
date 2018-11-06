@@ -35,7 +35,9 @@ namespace www
                 u = db.cargaUsuario(cuenta.Text);
                 res = u.comprobar(Usuario.Encriptar(pass.Text));
             }
+#pragma warning disable CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             catch(KeyNotFoundException ex)
+#pragma warning restore CS0168 // La variable 'ex' se ha declarado pero nunca se usa
             {
                 res = false;
             }
