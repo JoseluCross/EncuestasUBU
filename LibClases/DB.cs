@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web;
 
 namespace LibClases
 {
@@ -181,9 +182,9 @@ namespace LibClases
             return new DB(us);
         }
 
-        public void load(String encuestas, String respuestas)
+        public void load()
         {
-            using (var reader = new StreamReader(@encuestas))
+            using (var reader = new StreamReader(@HttpRuntime.AppDomainAppPath+"datos/Encuestas.csv"))
             {
                 while (!reader.EndOfStream)
                 {
@@ -193,7 +194,7 @@ namespace LibClases
                     insertaEncuesta(enc);
                 }
             }
-            using (var reader = new StreamReader(respuestas))
+            using (var reader = new StreamReader(@HttpRuntime.AppDomainAppPath+"datos/Respuestas.csv"))
             {
                 while (!reader.EndOfStream)
                 {

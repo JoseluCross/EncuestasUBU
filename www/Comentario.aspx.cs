@@ -75,7 +75,7 @@ namespace www
             l.Visible = false;
             TextBox com = (TextBox)FindControl("TAC");
             string texto = com.Text;
-            res = new Respuesta(db.cargaEncuesta(aux), vot, texto);
+            res = new Respuesta(db.cargaEncuesta(aux), vot, texto, new DateTime());
             if (flag)
             {
                 if (texto.Length == 0)

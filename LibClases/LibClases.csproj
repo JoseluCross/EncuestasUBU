@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +47,12 @@
     <Compile Include="Respuesta.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Voto.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="datos\Encuestas.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="datos\Respuestas.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

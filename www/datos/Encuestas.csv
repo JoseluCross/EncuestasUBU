@@ -1,0 +1,10 @@
+TEMPERATURA;Temperatura edificio;img1.jpg;true
+AGUA;Calidad del agua;img2.jpg;false
+LUZ;Potencia de la luz;img3.jpg;true
+MESAS;Calidad de las mesas;img4.jpg;false
+SILLAS;Calidad de las sillas;img5.jpg;true
+ORDENADOR;Calidad del ordenador;img6.jpg;false
+PANTALLAS;Calidad de las pantallas;img1.jpg;true
+PROYECTOR;Calidad del proyector;img2.jpg;false
+TECLADO;Calidad del teclado;img3.jpg;false
+RATON;Calidad del raton;img4.jpg;false

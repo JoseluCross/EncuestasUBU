@@ -18,6 +18,7 @@ namespace www
             if (db is null)
             {
                 db = DB.getDB();
+                db.load();
                 Application["db"] = db;
             }
             enc = db.cargaEncuestasVisibles();
