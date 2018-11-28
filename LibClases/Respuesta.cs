@@ -19,19 +19,23 @@ namespace LibClases
         /// Mensaje 
         /// </summary>
         private string mensaje;
-
+        /// <summary>
+        /// Fecha de la respuesta
+        /// </summary>
+        private DateTime fecha;
         /// <summary>
         /// Crea una respuesta
         /// </summary>
         /// <param name="enc">Encuesta de la respuesta</param>
         /// <param name="voto">Voto dado</param>
         /// <param name="mensaje">Mensaje dado</param>
-        public Respuesta(Encuesta enc, Voto voto, string mensaje)
+        /// <param name="fecha">Fecha de la respuesta</param> 
+        public Respuesta(Encuesta enc, Voto voto, string mensaje, DateTime fecha)
         {
             this.enc = enc;
             this.voto = voto;
             this.mensaje = mensaje;
-            ///TODO: Almacenar en la base de datos.
+            this.fecha = fecha;
         }
 
         /// <summary>
@@ -56,6 +60,14 @@ namespace LibClases
         public Encuesta Encuesta
         {
             get { return this.enc; }
+        }
+
+        /// <summary>
+        /// Getter de la fecha de la Respuesta
+        /// </summary>
+        public DateTime Fecha
+        {
+            get { return this.fecha; }
         }
 		
 		/// <summary>

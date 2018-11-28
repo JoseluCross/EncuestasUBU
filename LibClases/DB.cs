@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -144,40 +145,6 @@ namespace LibClases
             else
                 throw new Exception("Asignar respuesta a encuesta no existente");
         }
-
-        /// <summary>
-        /// Constructor que carga datos de forma manual
-        /// </summary>
-        private DB()
-        {
-            this.mapaUsuario = new Dictionary<string, Usuario>();
-            this.mapaEncuesta = new Dictionary<string, Encuesta>();
-            this.mapaRespuesta = new Dictionary<string, List<Respuesta>>();
-            Encuesta en = null;
-            Encuesta enp = new Encuesta("ENC1", "Esta es la encuesta 1", "img1.jpg", true);
-            insertaEncuesta(enp);
-            insertaRespuesta(new Respuesta(enp, Voto.ENFADADO, "Estoy enfadado"));
-            insertaRespuesta(new Respuesta(enp, Voto.CONTENTO, "Estoy contento"));
-            insertaRespuesta(new Respuesta(enp, Voto.NEUTRAL, "Estoy neutral"));
-            insertaRespuesta(new Respuesta(enp, Voto.ENFADADO, "Estoy enfadado2"));
-            insertaRespuesta(new Respuesta(enp, Voto.SATISFECHO, "Estoy satisfecho"));
-            insertaRespuesta(new Respuesta(enp, Voto.ENFADADO, "Estoy enfadado3"));
-            insertaRespuesta(new Respuesta(enp, Voto.CONTENTO, "Estoy contento2"));
-            insertaRespuesta(new Respuesta(enp, Voto.ENFADADO, "Estoy enfadado4"));
-            insertaRespuesta(new Respuesta(enp, Voto.ENFADADO, "Estoy enfadado5"));
-            en = new Encuesta("ENC2", "Esta es la encuesta 2", "img2.jpg", true);
-            insertaEncuesta(en);
-            en = new Encuesta("ENC3", "Esta es la encuesta 3", "img3.jpg", true);
-            insertaEncuesta(en);
-            en = new Encuesta("ENC4", "Esta es la encuesta 4", "img4.jpg", false);
-            insertaEncuesta(en);
-            en = new Encuesta("ENC5", "Esta es la encuesta 5", "img5.jpg", false);
-            insertaEncuesta(en);
-            insertaRespuesta(new Respuesta(en, Voto.ENFADADO, "Estoy enfadado"));
-            Usuario us = new Usuario("Dios", "QuienComoDios");
-            this.mapaUsuario[us.Cuenta] = us;
-        }
-
         /// <summary>
         /// Hace un test vacío
         /// </summary>
@@ -193,7 +160,7 @@ namespace LibClases
         /// <summary>
         /// Instancia privada de la base de datos
         /// </summary>
-        private static DB instance = new DB();
+        private static DB instance = getTestDB(new Usuario("Dios", "QuienComoDios"));
 
         /// <summary>
         /// Lectura de la base de datos Singleton
@@ -204,9 +171,39 @@ namespace LibClases
             return instance;
         }
 
+        /// <summary>
+        /// Constructor Base de Datos de  prueba
+        /// </summary>
+        /// <param name="us">Usuario admin</param>
+        /// <returns>Base de Datos de prueba</returns>
         public static DB getTestDB(Usuario us)
         {
             return new DB(us);
+        }
+
+        public void load(String encuestas, String respuestas)
+        {
+            using (var reader = new StreamReader(@encuestas))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(';');
+                    Encuesta enc = new Encuesta(values[0], values[1], values[2], Boolean.Parse(values[3]));
+                    insertaEncuesta(enc);
+                }
+            }
+            using (var reader = new StreamReader(respuestas))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(';');
+                    Respuesta res = new Respuesta(mapaEncuesta[values[0]], (Voto) Enum.Parse(typeof(Voto),values[1],true), values[2],new DateTime(
+                        Int16.Parse(values[3]), Int16.Parse(values[4]), Int16.Parse(values[5]), Int16.Parse(values[6]), Int16.Parse(values[7]), 0));
+                    insertaRespuesta(res);
+                }
+            }
         }
     }
 }
