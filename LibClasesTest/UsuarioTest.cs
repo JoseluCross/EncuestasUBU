@@ -7,6 +7,12 @@ namespace LibClasesTest
     [TestClass]
     public class UsuarioTest
     {
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            DB.getTestDB(new Usuario("Dios", "QuienComoDios"));
+        }
+
         [TestMethod]
         public void TestConstructorUsuarioExiste()
         {

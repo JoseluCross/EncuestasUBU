@@ -153,10 +153,19 @@ namespace LibClases
         /// <param name="test">Discrimina entre el otro constructor</param>
         private DB(Usuario us)
         {
+            clear();
+            this.mapaUsuario[us.Cuenta] = us;
+        }
+
+        /// <summary>
+        /// Limpia la base de datos
+        /// </summary>
+        public void clear()
+        {
             this.mapaUsuario = new Dictionary<string, Usuario>();
             this.mapaEncuesta = new Dictionary<string, Encuesta>();
             this.mapaRespuesta = new Dictionary<string, List<Respuesta>>();
-            this.mapaUsuario[us.Cuenta] = us;
+            
         }
 
         /// <summary>
@@ -180,12 +189,13 @@ namespace LibClases
         /// <returns>Base de Datos de prueba</returns>
         public static DB getTestDB(Usuario us)
         {
-            return new DB(us);
+            instance = new DB(us);
+            return instance;
         }
 
-        public void load()
+        public void load(String ruta)
         {
-            using (var reader = new StreamReader("C:\\Users\\YOSHI\\Desktop\\EncuestasUBU\\www\\datos\\Encuestas.csv"))
+            using (var reader = new StreamReader(ruta+"\\www\\datos\\Encuestas.csv"))
             {
                 while (!reader.EndOfStream)
                 {
@@ -195,7 +205,7 @@ namespace LibClases
                     insertaEncuesta(enc);
                 }
             }
-            using (var reader = new StreamReader("C:\\Users\\YOSHI\\Desktop\\EncuestasUBU\\www\\datos\\Respuestas.csv"))
+            using (var reader = new StreamReader(ruta + "\\www\\datos\\Respuestas.csv"))
             {
                 while (!reader.EndOfStream)
                 {

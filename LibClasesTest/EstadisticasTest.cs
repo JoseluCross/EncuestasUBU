@@ -2,6 +2,7 @@
 using System.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LibClases;
+using System.Diagnostics;
 
 namespace LibClases.Test
 {
@@ -9,14 +10,16 @@ namespace LibClases.Test
     public class EstadisticasTest
     {
 
-        private const String SUPERRUTA = "C:\\Users\\YOSHI\\Desktop\\EncuestasUBU\\LibClasesTest\\testCsv";
+        private const String SUPERRUTA = "C:\\Users\\jlgar\\source\\repos\\KnowOpinion\\LibClasesTest\\testCsv";
 
         private DB db;
 
-        public EstadisticasTest()
+        [TestInitialize]
+        public void TestSetup()
         {
             db = DB.getDB();
-            db.load();
+            db.clear();
+            db.load("C:\\Users\\jlgar\\source\\repos\\KnowOpinion");
         }
 
         [TestMethod]
@@ -70,20 +73,9 @@ namespace LibClases.Test
             DataTable real = new DataTable();
             real.Columns.Add("Titulo", typeof(string));
             real.Columns.Add("NRespuestas", typeof(int));
-            String aux1;
-            int aux2;
-
-            using (var reader = new System.IO.StreamReader(SUPERRUTA + "\\3-numeroRespuestas.csv"))
-            {
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    var values = line.Split(',');
-                    aux1 = values[0];
-                    aux2 = Int32.Parse(values[1]);
-                    real.Rows.Add(new object[] { aux1, aux2 });
-                }
-            }
+            
+            real = cargaBinaria(SUPERRUTA + "\\3-numeroRespuestas.csv", real, 0);
+            
             Assert.IsTrue(this.comparar(real, res));
         }
 
@@ -96,19 +88,8 @@ namespace LibClases.Test
             real.Columns.Add("Año", typeof(string));
             real.Columns.Add("NRespuestas", typeof(int));
 
-            int aux1, aux2;
+            real = cargaBinaria(SUPERRUTA + "\\4-respuestasPorAnios.csv", real, 0);
 
-            using (var reader = new System.IO.StreamReader(SUPERRUTA + "\\4-respuestasPorAnios.csv"))
-            {
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    var values = line.Split(',');
-                    aux1 =Int32.Parse( values[0]);
-                    aux2 = Int32.Parse(values[1]);
-                    real.Rows.Add(new object[] { aux1, aux2 });
-                }
-            }
             Assert.IsTrue(this.comparar(real, res));
         }
 
@@ -121,20 +102,153 @@ namespace LibClases.Test
             real.Columns.Add("Mes", typeof(string));
             real.Columns.Add("NRespuestas", typeof(int));
 
-            int aux1, aux2;
+            real = cargaBinaria(SUPERRUTA + "\\5-respuestasPorMeses.csv", real, 0);
 
-            using (var reader = new System.IO.StreamReader(SUPERRUTA + "\\5-respuestasPorMeses.csv"))
+            Assert.IsTrue(this.comparar(real, res));
+        }
+
+        [TestMethod]
+        public void respuestasPorSemanasTest()
+        {
+            Estadistica est = new Estadistica(db);
+            DataTable res = est.respuestasPorSemanas();
+            DataTable real = new DataTable();
+            real.Columns.Add("Dia", typeof(string));
+            real.Columns.Add("NRespuestas", typeof(int));
+
+            real = cargaBinaria(SUPERRUTA + "\\6-respuestasPorSemanas.csv",real, 0);
+
+            Assert.IsTrue(this.comparar(real, res));
+        }
+
+        [TestMethod]
+        public void respuestasPorHorasTest()
+        {
+            Estadistica est = new Estadistica(db);
+            DataTable res = est.respuestasPorHoras();
+            DataTable real = new DataTable();
+            real.Columns.Add("Hora", typeof(string));
+            real.Columns.Add("NRespuestas", typeof(int));
+
+            real = cargaBinaria(SUPERRUTA + "\\7-respuestasPorHoras.csv", real, 0);
+
+            Assert.IsTrue(this.comparar(real, res));
+        }
+
+        [TestMethod]
+        public void rankingEncuestasPorRespuestaTest()
+        {
+            Estadistica est = new Estadistica(db);
+            DataTable res = est.rankingEncuestasPorRespuesta();
+            DataTable real = new DataTable();
+            real.Columns.Add("Titulo", typeof(string));
+            real.Columns.Add("NRespuestas", typeof(int));
+
+            real = cargaBinaria(SUPERRUTA + "\\8-rankingEncuestasPorRespuestas.csv", real, 0);
+            DataView dw = new DataView(real);
+            dw.Sort = "NRespuestas, Titulo DESC";
+            real = dw.ToTable();
+            
+            Assert.IsTrue(this.compararExacto(real, res));   
+        }
+
+        [TestMethod]
+        public void rankingEncuestaPorValoracion()
+        {
+            Estadistica est = new Estadistica(db);
+            DataTable res = est.rankingEncuestasPorValoracion();
+            DataTable real = new DataTable();
+            real.Columns.Add("Titulo", typeof(string));
+            real.Columns.Add("Valoracion", typeof(int));
+
+            real = cargaBinaria(SUPERRUTA + "\\9-rankingEncuestasPorValoracion.csv", real, 0);
+
+            DataView dw = new DataView(real);
+            dw.Sort = "Valoracion, Titulo DESC";
+            real = dw.ToTable();
+
+            Assert.IsTrue(this.compararExacto(real, res));
+        }
+
+        [TestMethod]
+        public void mediaPorEncuestaTest()
+        {
+            Estadistica est = new Estadistica(db);
+            DataTable res = est.mediaPorEncuesta();
+            DataTable real = new DataTable();
+            real.Columns.Add("Titulo", typeof(string));
+            real.Columns.Add("Media", typeof(double));
+
+            real = cargaBinaria(SUPERRUTA + "\\10-mediaPorEncuesta.csv", real, 1);
+
+            DataView dw = new DataView(real);
+            dw.Sort = "Media, Titulo DESC";
+            real = dw.ToTable();
+
+            foreach (DataRow dr in real.Rows)
+            {
+                Debug.WriteLine(dr[0] + " " + dr[1]);
+            }
+
+            Assert.IsTrue(this.compararExacto(real, res));
+        }
+
+        [TestMethod]
+        public void mediaTest()
+        {
+            Estadistica est = new Estadistica(db);
+            double media = est.media();
+            double real = 0;
+
+            using (var reader = new System.IO.StreamReader(SUPERRUTA + "\\11-media.csv"))
             {
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
                     var values = line.Split(',');
-                    aux1 = Int32.Parse(values[0]);
-                    aux2 = Int32.Parse(values[1]);
-                    real.Rows.Add(new object[] { aux1, aux2 });
+                    real = Double.Parse(values[0].Replace('.',','));
                 }
             }
-            Assert.IsTrue(this.comparar(real, res));
+
+            Assert.AreEqual(media, real);
+        }
+
+        [TestMethod]
+        public void medianaPorEncuestaTest()
+        {
+            Estadistica est = new Estadistica(db);
+            DataTable res = est.medianaPorEncuesta();
+            DataTable real = new DataTable();
+            real.Columns.Add("Titulo", typeof(string));
+            real.Columns.Add("Mediana", typeof(double));
+
+            real = cargaBinaria(SUPERRUTA + "\\12-medianaPorEncuesta.csv", real, 1);
+
+            DataView dw = new DataView(real);
+            dw.Sort = "Mediana, Titulo DESC";
+            real = dw.ToTable();
+
+            Assert.IsTrue(this.compararExacto(real, res));
+        }
+
+        [TestMethod]
+        public void mediana()
+        {
+            Estadistica est = new Estadistica(db);
+            double mediana = est.mediana();
+            double real = 0;
+
+            using (var reader = new System.IO.StreamReader(SUPERRUTA + "\\13-mediana.csv"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    real = Double.Parse(values[0].Replace('.', ','));
+                }
+            }
+
+            Assert.AreEqual(mediana, real);
         }
 
         private bool comparar(DataTable real, DataTable res)
@@ -192,6 +306,40 @@ namespace LibClases.Test
                 }
             }
             return true;
+        }
+
+        /// <summary>
+        /// Carga un datatable de un csv en las pruebas de respuestas por fecha
+        /// </summary>
+        /// <param name="route">Ruta del CSV</param>
+        /// <param name="real">DataTable original</param>
+        /// <returns></returns>
+        private DataTable cargaBinaria(string route, DataTable real, int mode)
+        {
+
+            string aux1;
+            object aux2 = 0;
+
+            using (var reader = new System.IO.StreamReader(route))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    aux1 = values[0];
+                    switch (mode)
+                    {
+                        case 0:
+                            aux2 = Int32.Parse(values[1]);
+                            break;
+                        case 1:
+                            aux2 = Math.Round(Double.Parse(values[1].Replace('.',',')),8);
+                            break;
+                    }
+                    real.Rows.Add(new object[] { aux1, aux2 });
+                }
+            }
+            return real;
         }
     }
 }

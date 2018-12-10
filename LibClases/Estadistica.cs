@@ -10,10 +10,15 @@ namespace LibClases
     public class Estadistica
     {
         private DB db;
+        private static Dictionary<Voto, int> puntos = new Dictionary<Voto, int>();
 
         public Estadistica(DB db)
         {
             this.db = db;
+            puntos[Voto.CONTENTO] = 3;
+            puntos[Voto.SATISFECHO] = 2;
+            puntos[Voto.NEUTRAL] = 1;
+            puntos[Voto.ENFADADO] = 0;
         }
 
         public DataTable estadoEncuesta()
@@ -63,14 +68,7 @@ namespace LibClases
                 foreach(Respuesta resp in db.cargaRespuestas(enc.Titulo))
                 {
                     int año = resp.Fecha.Year;
-                    if (res.ContainsKey(año))
-                    {
-                        res[año]++;
-                    }
-                    else
-                    {
-                        res[año] = 1;
-                    }
+                    añadirCondicionado(res, año);
                 }
             }
             real = añadirDiccionario(real, res);
@@ -90,14 +88,48 @@ namespace LibClases
                 foreach (Respuesta resp in db.cargaRespuestas(enc.Titulo))
                 {
                     int mes = resp.Fecha.Month;
-                    if (res.ContainsKey(mes))
-                    {
-                        res[mes]++;
-                    }
-                    else
-                    {
-                        res[mes] = 1;
-                    }
+                    añadirCondicionado(res, mes);
+                }
+            }
+
+            real = añadirDiccionario(real, res);
+            return real;
+        }        
+
+        public DataTable respuestasPorSemanas()
+        {
+            DataTable real = new DataTable();
+            real.Columns.Add("Dia", typeof(string));
+            real.Columns.Add("NRespuestas", typeof(int));
+
+            Dictionary<int, int> res = new Dictionary<int, int>();
+
+            foreach (Encuesta enc in db.cargaEncuestas())
+            {
+                foreach (Respuesta resp in db.cargaRespuestas(enc.Titulo))
+                {
+                    int dia = resp.Fecha.Day;
+                    añadirCondicionado(res, dia);
+                }
+            }
+            real = añadirDiccionario(real, res);
+            return real;
+        }
+
+        public DataTable respuestasPorHoras()
+        {
+            DataTable real = new DataTable();
+            real.Columns.Add("Hora", typeof(string));
+            real.Columns.Add("NRespuestas", typeof(int));
+
+            Dictionary<int, int> res = new Dictionary<int, int>();
+
+            foreach (Encuesta enc in db.cargaEncuestas())
+            {
+                foreach (Respuesta resp in db.cargaRespuestas(enc.Titulo))
+                {
+                    int hora = resp.Fecha.Hour;
+                    añadirCondicionado(res, hora);
                 }
             }
 
@@ -105,14 +137,172 @@ namespace LibClases
             return real;
         }
 
-        private DataTable añadirDiccionario(DataTable real, Dictionary<int,int> res)
+        private void añadirCondicionado<T>(Dictionary<T,int> res, T val)
         {
-            foreach (int mes in res.Keys)
+            if (res.ContainsKey(val))
+            {
+                res[val]++;
+            }
+            else
+            {
+                res[val] = 1;
+            }
+        }
+
+        private DataTable añadirDiccionario<T>(DataTable real, Dictionary<T, int> res)
+        {
+            foreach (T mes in res.Keys)
             {
                 real.Rows.Add(new object[] { mes, res[mes] });
                 Debug.WriteLine(mes.ToString() + " " + res[mes].ToString());
             }
             return real;
+        }
+
+        public DataTable rankingEncuestasPorRespuesta()
+        {
+            DataTable real = this.numeroRespuestas();
+
+            //real = añadirDiccionario(real, res);
+
+            DataView dw = new DataView(real);
+            dw.Sort = "NRespuestas, Titulo DESC";
+
+            return dw.ToTable();
+        }
+
+        public DataTable rankingEncuestasPorValoracion()
+        {
+            DataTable real = new DataTable();
+            real.Columns.Add("Titulo", typeof(string));
+            real.Columns.Add("Valoracion", typeof(int));
+
+            int max = puntos.Values.Max();
+
+            foreach(Encuesta enc in db.cargaEncuestas())
+            {
+                int temp = -1;
+                foreach (Respuesta res in db.cargaRespuestas(enc.Titulo))
+                {
+                    if (puntos[res.Voto] > temp)
+                        temp = puntos[res.Voto];
+                    if (temp == max)
+                        break;
+                }
+                real.Rows.Add(new object[] { enc.Titulo, temp });
+            }
+            
+
+            DataView dw = new DataView(real);
+            dw.Sort = "Valoracion, Titulo DESC";
+            real = dw.ToTable();
+            return real;
+        }
+
+        public DataTable mediaPorEncuesta()
+        {
+            DataTable real = new DataTable();
+            real.Columns.Add("Titulo", typeof(string));
+            real.Columns.Add("Media", typeof(double));
+
+            foreach(Encuesta enc in db.cargaEncuestas()) { 
+                List<int> valores = new List<int>();
+                foreach(Respuesta res in db.cargaRespuestas(enc.Titulo))
+                {
+                    valores.Add(puntos[res.Voto]);
+                }
+                double media = Math.Round(valores.Average(),8);
+                real.Rows.Add(new object[] { enc.Titulo, media });
+            }
+
+            DataView dw = new DataView(real);
+            dw.Sort = "Media, Titulo DESC";
+            real = dw.ToTable();
+
+            foreach(DataRow dr in real.Rows)
+            {
+                Debug.WriteLine(dr[0] + " " + dr[1]);
+            }
+
+            return real;
+        }
+
+        public double media()
+        {
+            List<int> valores = new List<int>();
+            foreach (Encuesta enc in db.cargaEncuestas())
+            {
+                foreach (Respuesta res in db.cargaRespuestas(enc.Titulo))
+                {
+                    valores.Add(puntos[res.Voto]);
+                }
+            }
+            return valores.Average();
+        }
+
+        public DataTable medianaPorEncuesta()
+        {
+            DataTable real = new DataTable();
+            real.Columns.Add("Titulo", typeof(string));
+            real.Columns.Add("Mediana", typeof(double));
+
+            foreach (Encuesta enc in db.cargaEncuestas())
+            {
+                List<double> valores = new List<double>();
+                foreach (Respuesta res in db.cargaRespuestas(enc.Titulo))
+                {
+                    valores.Add(puntos[res.Voto]);
+                }
+                double valor = mediana(valores);
+                real.Rows.Add(new object[] { enc.Titulo, valor });
+            }
+
+            DataView dw = new DataView(real);
+            dw.Sort = "Mediana, Titulo DESC";
+            real = dw.ToTable();
+
+            foreach (DataRow dr in real.Rows)
+            {
+                Debug.WriteLine(dr[0] + " " + dr[1]);
+            }
+
+            return real;
+        }
+
+        public double mediana()
+        {
+            double med = 0;
+
+            List<double> valores = new List<double>();
+            foreach(Encuesta enc in db.cargaEncuestas())
+            {
+                foreach(Respuesta res in db.cargaRespuestas(enc.Titulo))
+                {
+                    valores.Add(puntos[res.Voto]);
+                }
+            }
+
+            med = mediana(valores);
+
+            return med;
+        }
+
+        private double mediana(List<double> valores)
+        {
+            valores.Sort();
+            int indice = Decimal.ToInt32(Math.Floor(valores.Count / 2m));
+
+            double valor = 0;
+            if (valores.Count % 2 != 0)
+            {
+                valor = valores[indice];
+            }
+            else
+            {
+                int superIndice = Decimal.ToInt32(Math.Floor(valores.Count / 2m)) - 1;
+                valor = (valores[indice] + valores[superIndice]) / 2d;
+            }
+            return valor;
         }
     }
 }
