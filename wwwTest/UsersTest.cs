@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
-
+/**
 namespace SeleniumTest1
 {
     [TestClass]
@@ -123,3 +123,4 @@ namespace SeleniumTest1
         }
     }
 }
+*/

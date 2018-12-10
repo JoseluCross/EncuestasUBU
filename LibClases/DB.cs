@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Diagnostics;
 
 namespace LibClases
 {
@@ -184,7 +185,7 @@ namespace LibClases
 
         public void load()
         {
-            using (var reader = new StreamReader(@HttpRuntime.AppDomainAppPath+"datos/Encuestas.csv"))
+            using (var reader = new StreamReader("C:\\Users\\YOSHI\\Desktop\\EncuestasUBU\\www\\datos\\Encuestas.csv"))
             {
                 while (!reader.EndOfStream)
                 {
@@ -194,14 +195,14 @@ namespace LibClases
                     insertaEncuesta(enc);
                 }
             }
-            using (var reader = new StreamReader(@HttpRuntime.AppDomainAppPath+"datos/Respuestas.csv"))
+            using (var reader = new StreamReader("C:\\Users\\YOSHI\\Desktop\\EncuestasUBU\\www\\datos\\Respuestas.csv"))
             {
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
                     var values = line.Split(';');
                     Respuesta res = new Respuesta(mapaEncuesta[values[0]], (Voto) Enum.Parse(typeof(Voto),values[1],true), values[2],new DateTime(
-                        Int16.Parse(values[3]), Int16.Parse(values[4]), Int16.Parse(values[5]), Int16.Parse(values[6]), Int16.Parse(values[7]), 0));
+                        Int32.Parse(values[3]), Int32.Parse(values[4]), Int32.Parse(values[5]), Int32.Parse(values[6]), Int32.Parse(values[7]), 0));
                     insertaRespuesta(res);
                 }
             }

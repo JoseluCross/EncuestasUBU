@@ -35,7 +35,7 @@ namespace LibClasesTest
             en = new Encuesta("ENC5", "Esta es la encuesta 5", "img5.jpg", false);
             db.insertaEncuesta(en);
             encuestas.Add(en);
-            db.insertaRespuesta(new Respuesta(en, Voto.ENFADADO, "Estoy enfadado"));
+            db.insertaRespuesta(new Respuesta(en, Voto.ENFADADO, "Estoy enfadado",DateTime.Now));
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace LibClasesTest
         [TestMethod]
         public void TestInsertaRespuesta()
         {
-            Respuesta res = new Respuesta(this.encuestas[0], Voto.CONTENTO, "Mensase");
+            Respuesta res = new Respuesta(this.encuestas[0], Voto.CONTENTO, "Mensase",DateTime.Now);
             db.insertaRespuesta(res);
             Assert.IsTrue(db.cargaRespuestas(res.Encuesta.Titulo).Contains(res));
         }
@@ -214,7 +214,7 @@ namespace LibClasesTest
         public void TestInsertaRespuestaEncuestaNoExiste()
         {
             Encuesta en = new Encuesta("Encuesta no guardada", "Desc", "foto.img");
-            Respuesta res = new Respuesta(en, Voto.CONTENTO, "Mensase");
+            Respuesta res = new Respuesta(en, Voto.CONTENTO, "Mensase",DateTime.Now);
             try
             {
                 db.insertaRespuesta(res);

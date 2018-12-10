@@ -47,16 +47,38 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EncuestaTest.cs" />
     <Compile Include="RespuestaTest.cs" />
+    <Compile Include="EstadisticasTest.cs" />
     <Compile Include="UsuarioTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="testCsv\.~lock.Datos.ods#" />
+    <None Include="testCsv\1-estadoEncuesta.csv" />
+    <None Include="testCsv\10-mediaPorEncuesta.csv" />
+    <None Include="testCsv\11-media.csv" />
+    <None Include="testCsv\12-medianaPorEncuesta.csv" />
+    <None Include="testCsv\13-mediana.csv" />
+    <None Include="testCsv\14-desvEstPorEncuesta.csv" />
+    <None Include="testCsv\15-desvest.csv" />
+    <None Include="testCsv\16-numRespRangosPorEncuesta-agua.csv" />
+    <None Include="testCsv\16-numRespRangosPorEncuesta-teclado.csv" />
+    <None Include="testCsv\17-numRespRangos.csv" />
+    <None Include="testCsv\2-numeroEncuestas.csv" />
+    <None Include="testCsv\3-numeroRespuestas.csv" />
+    <None Include="testCsv\4-respuestasPorAnios.csv" />
+    <None Include="testCsv\5-respuestasPorMeses.csv" />
+    <None Include="testCsv\6respuestasPorSemanas.csv" />
+    <None Include="testCsv\7-respuestasPorHoras.csv" />
+    <None Include="testCsv\8-rankingEncuestasPorRespuestas.csv" />
+    <None Include="testCsv\9-rankingEncuestasPorValoracion.csv" />
+    <None Include="testCsv\Datos.ods" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LibClases\LibClases.csproj">

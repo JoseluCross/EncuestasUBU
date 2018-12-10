@@ -14,7 +14,7 @@ namespace LibClasesTest
             Encuesta en = new Encuesta("EncTest", "Descripcion", "img1.jpg", visibilidadAnterior);
             Voto vt = Voto.ENFADADO;
             string mn = "Estoy enfadado";
-            Respuesta res = new Respuesta(en, vt, mn);
+            Respuesta res = new Respuesta(en, vt, mn,DateTime.Now);
             Assert.AreEqual(vt, res.Voto);
             Assert.AreEqual(mn, res.Mensaje);
         }

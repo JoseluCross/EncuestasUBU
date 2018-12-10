@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
-
+/**
 namespace SeleniumTests2
 {
     [TestClass]
@@ -97,3 +97,4 @@ namespace SeleniumTests2
         }
     }
 }
+*/
