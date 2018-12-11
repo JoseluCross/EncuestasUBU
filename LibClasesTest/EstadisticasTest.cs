@@ -406,8 +406,9 @@ namespace LibClases.Test
         /// Carga un datatable de un csv en las pruebas de respuestas por fecha
         /// </summary>
         /// <param name="route">Ruta del CSV</param>
-        /// <param name="real">DataTable original</param>
-        /// <returns></returns>
+        /// <param name="real">DataTable original sin datos</param>
+        /// <param name="mode">Modo del segundo dato, siendo 0 si es entero y 1 si es double</param>
+        /// <returns>Datatable con los datos</returns>
         private DataTable cargaBinaria(string route, DataTable real, int mode)
         {
 
