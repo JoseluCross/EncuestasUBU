@@ -136,7 +136,10 @@ namespace LibClases
             real = añadirDiccionario(real, res);
             return real;
         }
-
+        
+        ///<sumary>Añade a un diccionario un valor o le suma 1 si ya existe, la clave es genérica</sumary>
+        ///<param name="res">Diccionario donde se va a guardar o incrementar los valores</param>
+        ///<param name="val">Clave del diccionario a asiganar o incrementar el contenido</param>
         private void añadirCondicionado<T>(Dictionary<T,int> res, T val)
         {
             if (res.ContainsKey(val))
@@ -148,7 +151,10 @@ namespace LibClases
                 res[val] = 1;
             }
         }
-
+        
+        ///<sumary>Añade al datatable el diccionaario</sumary>
+        ///<param name="real">DataTable vacío con las columnas creadas</param>
+        ///<param name="res">Diccionario donde la clave va a ser el primer campo y el valor el segundo</param>
         private DataTable añadirDiccionario<T>(DataTable real, Dictionary<T, int> res)
         {
             foreach (T mes in res.Keys)
