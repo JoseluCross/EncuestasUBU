@@ -287,6 +287,52 @@ namespace LibClases
             return med;
         }
 
+        public DataTable desvEstPorEncuesta()
+        {
+            DataTable real = new DataTable();
+            real.Columns.Add("Titulo", typeof(string));
+            real.Columns.Add("Desviacion", typeof(double));
+            DataTable medias = mediaPorEncuesta();
+            foreach(DataRow drow in medias.Rows)
+            {
+                double sum = 0;
+                int nres = 0;
+                foreach (Respuesta res in db.cargaRespuestas((string)drow[0]))
+                {
+                    nres++;
+                    sum += Math.Pow(puntos[res.Voto] - (double)drow[1], 2);
+                }
+                real.Rows.Add(new object[] { drow[0], Math.Round(Math.Sqrt(sum / (nres - 1)), 8)  });
+            }
+
+            DataView dw = new DataView(real);
+            dw.Sort = "Desviacion, Titulo DESC";
+            real = dw.ToTable();
+
+            foreach (DataRow dr in real.Rows)
+            {
+                Debug.WriteLine(dr[0] + " " + dr[1]);
+            }
+
+            return real;
+        }
+
+        public double desvest()
+        {
+            double sum = 0;
+            int nres = 0;
+            double med = media();
+            foreach (Encuesta enc in db.cargaEncuestas())
+            {
+                foreach (Respuesta res in db.cargaRespuestas(enc.Titulo))
+                {
+                    nres++;
+                    sum += Math.Pow(puntos[res.Voto] - med, 2);
+                }
+            }
+            return Math.Round(Math.Sqrt(sum / (nres - 1)), 8);
+        }
+
         private double mediana(List<double> valores)
         {
             valores.Sort();
@@ -303,6 +349,60 @@ namespace LibClases
                 valor = (valores[indice] + valores[superIndice]) / 2d;
             }
             return valor;
+        }
+
+        public DataTable numRespRangosPorEncuesta(string v)
+        {
+            DataTable real = new DataTable();
+            real.Columns.Add("Titulo", typeof(string));
+            real.Columns.Add("Minimo", typeof(int));
+            real.Columns.Add("Maximo", typeof(int));
+
+            Encuesta enc = db.cargaEncuesta(v);
+
+            real = añadirMinMax(real, enc.Titulo);
+            return real;
+
+        }
+
+        public DataTable numRespRangos()
+        {
+            DataTable real = new DataTable();
+            real.Columns.Add("Titulo", typeof(string));
+            real.Columns.Add("Minimo", typeof(int));
+            real.Columns.Add("Maximo", typeof(int));
+
+            foreach(Encuesta enc in db.cargaEncuestas())
+            {
+
+                real = añadirMinMax(real, enc.Titulo);
+            }
+            return real;
+        }
+
+        private DataTable añadirMinMax(DataTable real, string ti)
+        {
+            int min = 4;
+            int max = -1;
+            int vo = 0;
+            foreach (Respuesta res in db.cargaRespuestas(ti))
+            {
+                vo = puntos[res.Voto];
+                if (vo < min)
+                {
+                    min = vo;
+                }
+                if (vo > max)
+                {
+                    max = vo;
+                }
+                if (min == puntos.Values.Min() && max == puntos.Values.Max())
+                {
+                    break;
+                }
+            }
+            real.Rows.Add(new object[] { ti, min, max });
+            return real;
         }
     }
 }

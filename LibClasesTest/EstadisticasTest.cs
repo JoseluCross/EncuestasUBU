@@ -10,7 +10,7 @@ namespace LibClases.Test
     public class EstadisticasTest
     {
 
-        private const String SUPERRUTA = "C:\\Users\\jlgar\\source\\repos\\KnowOpinion\\LibClasesTest\\testCsv";
+        private const String SUPERRUTA = "C:\\Users\\YOSHI\\Desktop\\EncuestasUBU\\LibClasesTest\\testCsv";
 
         private DB db;
 
@@ -19,7 +19,7 @@ namespace LibClases.Test
         {
             db = DB.getDB();
             db.clear();
-            db.load("C:\\Users\\jlgar\\source\\repos\\KnowOpinion");
+            db.load("C:\\Users\\YOSHI\\Desktop\\EncuestasUBU");
         }
 
         [TestMethod]
@@ -249,6 +249,100 @@ namespace LibClases.Test
             }
 
             Assert.AreEqual(mediana, real);
+        }
+
+        [TestMethod]
+        public void desvEstPorEncuestaTest()
+        {
+            Estadistica est = new Estadistica(db);
+            DataTable res = est.desvEstPorEncuesta();
+            DataTable real = new DataTable();
+            real.Columns.Add("Titulo", typeof(string));
+            real.Columns.Add("Desviacion", typeof(double));
+
+            real = cargaBinaria(SUPERRUTA + "\\14-desvEstPorEncuesta.csv", real, 1);
+
+            DataView dw = new DataView(real);
+            dw.Sort = "Desviacion, Titulo DESC";
+            real = dw.ToTable();
+
+            Assert.IsTrue(this.compararExacto(real, res));
+        }
+
+        [TestMethod]
+        public void desvestTest()
+        {
+            Estadistica est = new Estadistica(db);
+            double real = 0;
+            double res = est.desvest();
+
+            using (var reader = new System.IO.StreamReader(SUPERRUTA + "\\15-desvest.csv"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    real = Math.Round(Double.Parse(values[0].Replace('.', ',')),8);
+                }
+            }
+
+            Assert.AreEqual(real, res);
+
+        }
+
+        [TestMethod]
+        public void numRespRangosPorEncuestaTest()
+        {
+            Estadistica est = new Estadistica(db);
+         
+            String[] aux = { "teclado", "agua" };
+            foreach (String s in aux)
+            {
+
+                DataTable real = new DataTable();
+                real.Columns.Add("Titulo", typeof(string));
+                real.Columns.Add("Minimo", typeof(int));
+                real.Columns.Add("Maximo", typeof(int));
+
+                using (var reader = new System.IO.StreamReader(SUPERRUTA + "\\16-numRespRangosPorEncuesta-" + s + ".csv"))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+                        var values = line.Split(',');
+                        real.Rows.Add(new object[] { values[0], Int32.Parse(values[1]), Int32.Parse(values[2]) });
+                    }
+                }
+
+                DataTable res = est.numRespRangosPorEncuesta((string)real.Rows[0][0]);
+
+                Assert.IsTrue(this.comparar(real, res));
+            }
+        }
+
+        [TestMethod]
+        public void numRespRangosTest()
+        {
+            Estadistica est = new Estadistica(db);
+
+            DataTable real = new DataTable();
+            real.Columns.Add("Titulo", typeof(string));
+            real.Columns.Add("Minimo", typeof(int));
+            real.Columns.Add("Maximo", typeof(int));
+
+            using (var reader = new System.IO.StreamReader(SUPERRUTA + "\\17-numRespRangos.csv"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    real.Rows.Add(new object[] { values[0], Int32.Parse(values[1]), Int32.Parse(values[2]) });
+                }
+            }
+
+            DataTable res = est.numRespRangos();
+
+            Assert.IsTrue(this.comparar(real, res));
         }
 
         private bool comparar(DataTable real, DataTable res)
